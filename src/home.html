@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Homepage</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome link -->
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			color: white;
+		}
+		.background {
+			background-image: url('file.jpg'); /* Replace with your image path */
+			background-size: cover;
+			background-position: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 80vh;
+			filter: brightness(50%);
+			z-index: -1;
+		}
+		.container {
+		  	width: 100%;
+		  	max-width: auto;
+		  	margin-top: 40vh;
+		  	padding: 20px;
+		  	background-color: #333;
+		  	color: black;
+		  	position: relative;
+		}
+		.row {
+			height: 500px;
+			display: flex;
+			width: 100vw;
+			align-items: center;
+			margin-bottom: 20px;
+			text-align: center;
+			gap: 20px;
+		}
+		.row1 {
+			height: 500px;
+			display: flex;
+			width: 100vw;
+			align-items: center;
+			margin-bottom: 20px;
+			text-align: center;
+			gap: 20px;
+		}
+		.row2 {
+			background-color: black;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+			height: 300px;
+			display: flex;
+			width: 100vw;
+			align-items: center; /* Center items vertically */
+			margin-bottom: 20px;
+			/* The image used */
+			background-image: url("plan.jpg");
+
+			/* Set a specific height */
+			min-height: 300px;
+
+			/* Create the parallax scrolling effect */
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			justify-content: center;
+		}
+		.col {
+			flex: 1;
+			padding: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.tips1, .tips2, .tips3, .tips4, .tips5, .tips6 {
+			display: inline-block;
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            border-radius: 8px;
+            width: calc(33% - 40px);
+            height: 100%;
+            box-sizing: border-box;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+		}
+		.tips1 { background-image: url('weather.jpg'); } /* Replace with your image */
+		.tips2 { background-image: url('outfit.jpg'); } /* Replace with your image */
+		.tips3 { background-image: url('luggage.jpg'); } /* Replace with your image */
+		.tips4 { background-image: url('health.jpg'); } /* Replace with your image */
+		.tips5 { background-image: url('local.jpg'); } /* Replace with your image */
+		.tips6 { background-image: url('plans.jpg'); } /* Replace with your image */
+
+		.tips1:hover, .tips2:hover, .tips3:hover, .tips4:hover, .tips5:hover, .tips6:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hover overlay effect */
+        .tips1::after, .tips2::after, .tips3::after, .tips4:after, .tips5:after, .tips6:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            transition: background-color 0.3s;
+            border-radius: 8px;
+        }
+        .tips1:hover::after, .tips2:hover::after, .tips3:hover::after, .tips4:hover::after, .tips5:hover::after, .tips6:hover::after {
+            background-color: rgba(0, 0, 0, 0.1); /* Lighter overlay on hover */
+        }
+
+        /* Text inside tips */
+        .tips1 .text, .tips2 .text, .tips3 .text, .tips4 .text, .tips5 .text, .tips6 .text {
+            position: relative;
+            z-index: 1;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px; /* Increased margin to create space */
+        }
+
+        /* Description text styling */
+        .description {
+            font-size: 2em;
+            font-weight: 300;
+            font-family: Times New Roman;
+            padding-top: 80px;
+            color: #f0f0f0;
+            margin-top: 100px; /* Added top margin to create space */
+            text-align: center;
+            line-height: 1.4;
+            width: 80%;
+            margin: auto;
+            max-width: 300px;
+        }
+
+        /* Header */
+		.header {
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    padding: 10px 20px;
+		    position: fixed; /* Make header fixed */
+		    top: 0; /* Lock it at the top */
+		    width: 98%; /* Full width */
+		    z-index: 1; /* Ensure it's above other content */
+		    background-color: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent background for readability */
+		    border-bottom: 2px solid white;
+		}
+
+		.header .menu {
+		    display: flex;
+		    gap: 5px; /* Reduce gap to bring items closer */
+		    border: 1px solid white; /* Add a border around the menu */
+		    border-radius: 5px; /* Optional: Rounded corners */
+		    padding: 5px; /* Add padding inside the menu for spacing */
+		}
+
+		.col.plan {
+		    background-color: rgba(255, 255, 255, 0.8); /* Add slight transparency */
+		    border-radius: 8px; /* Round corners */
+		    padding: 60px; /* Adjust padding for spacing */
+		    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow */
+		    transition: transform 0.3s, box-shadow 0.3s;
+		    width: 35vw; /* Adjust width */
+		    max-width: 300px; /* Set max width for responsiveness */
+		    text-align: center; /* Center text */
+		}
+
+		.col.plan:hover {
+		    transform: translateY(-5px); /* Slight hover effect */
+		    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+		}
+
+		h2{
+			font-family: times new roman;
+		    font-size: 2em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: whitesmoke; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h3{
+			font-family: times new roman;
+		    font-size: 1em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: white; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h4{
+			font-family: times new roman;
+		    font-size: 25px; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: black; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		.header .menu a {
+			font-family: 'Times New Roman', Times, serif;
+		    color: white;
+		    text-decoration: none;
+		    font-weight: bold;
+		    font-size: 0.9em;
+		    padding: 5px 10px; /* Adjust padding for links */
+		    transition: background-color 0.3s; /* Smooth transition */
+		}
+
+		.header .menu a:hover {
+		    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+		}
+
+		.header .title{
+			font-family: times new roman;
+		    font-size: 2em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: whitesmoke; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+        .country-selector {
+			font-family: 'Times New Roman', Times, serif;
+			color: white;
+			font-size: 1.5em;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border: 2px solid white;
+			border-radius: 8px;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+		.country-selector:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+			transform: scale(1.05);
+		}
+		.country-selector i {
+			margin-right: 10px;
+		}
+        .content {
+            text-align: center;
+            margin-top: 20vh;
+            padding: 0 20px;
+        }
+        .content h1 {
+        	font-family: Times New Roman;
+            font-size: 3em;
+            margin: 0;
+            font-weight: bold;
+        }
+        .content h2 {
+        	font-family: Times New Roman;
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-weight: normal;
+        }
+        .footer {
+        	width: 100%;
+			background-color: black;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		.footer a {
+			color: #fff;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+		.footer a:hover {
+			text-decoration: underline;
+		}
+		.footer .social-icons {
+			margin-top: 10px;
+		}
+		.footer .social-icons a {
+			margin: 0 5px;
+			font-size: 1.5em;
+		}
+		.btn-start {
+			display: inline-block;
+			margin-top: 20px; /* Space above the button */
+			padding: 10px 20px; /* Padding inside the button */
+			background-color: white; /* Button color */
+			color: black; /* Button text color */
+			border: none; /* No border */
+			border-radius: 5px; /* Rounded corners */
+			text-decoration: none; /* Remove underline */
+			font-size: 1em; /* Button text size */
+			transition: background-color 0.3s; /* Transition for hover effect */
+		}
+		.btn-start:hover {
+			background-color: #0056b3; /* Darker color on hover */
+		}
+		a{
+			color: white;
+		}
+		/* Description text styling */
+        /* About Us Section Styling */
+.description {
+    font-size: 1.2em; /* Adjust font size for better readability */
+    font-weight: 300; /* Light font weight for a softer look */
+    font-family: 'Poppins', sans-serif; /* Change to a modern font */
+    padding: 40px; /* Increase padding for breathing space */
+    color: #f0f0f0; /* Light color for contrast */
+    margin-top: 10px; /* Space above the section */
+    text-align: center; /* Center text */
+    line-height: 1.6; /* Increase line height for better readability */
+    width: 80%;
+    max-width: 600px; /* Max width for better layout */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.description h2 {
+    font-size: 1.5em; /* Increase header size */
+    font-weight: bold; /* Bold header for emphasis */
+    color: #fff; /* White text for contrast */
+    margin-bottom: 10px; /* Space below header */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+}
+
+.description p {
+    font-size: 1em; /* Standard paragraph font size */
+    margin: 0; /* Remove default margin */
+    color: #d0d0d0; /* Slightly darker shade for text */
+}
+
+	</style>
+</head>
+<body>
+
+	<!-- Background Image -->
+	<div class="background"></div>
+
+	<!-- Header -->
+	<div class="header">
+        <a style="text-decoration: none;" href="home.html"><div class="title">TRAVELIES</div></a>
+        <div class="menu">
+            <a href="#about-us">ABOUT US</a>
+            <a href="index.html">WEATHER & OUTFIT</a>
+            <a href="tools.html">TOOLS</a>
+            <a href="local.html">LOCAL</a>
+            <a href="health.html">HEALTH</a>
+        </div>
+        <a style="text-decoration: none;" href="crud.html"><div class="country-selector">
+            <i class="fas fa-map-marked-alt"></i>
+            Create Plan
+        </div></a>
+    </div>
+
+    <div class="content">
+        <h1>WELCOME TO TRAVELIES !</h1>
+        <h3>The website where you can get travel tips and current country weather</h3>
+    </div>
+
+    <!-- Content Container Below Background -->
+    <div class="container">
+		 <!-- About Us Section -->
+		 <div class="description" id="about-us">
+            <h2>About Us</h2>
+            <p>Travelies is your go-to online destination for comprehensive travel advice and up-to-date weather information. We understand that planning a trip can be overwhelming, so we provide tailored tips to help you navigate every aspect of your journey. From the latest weather forecasts that guide your packing decisions to insightful advice on local customs and essential travel gear, Travelies empowers you to travel smarter and safer. Whether you’re embarking on a weekend getaway or an international adventure, our resources ensure you're well-prepared to enjoy every moment of your travels.</p>
+        </div>
+    	<center><h2>FEATURED</h2></center>
+    	<div class="row1">
+    		<div class="col tips1">
+                <a style="text-decoration: none;" href="index.html"><div class="text">WEATHER & OUTFIT</div></a>
+                <div class="description">Stay updated with the latest weather forecasts to plan your travels effectively.</div>
+    		</div>
+    		<div class="col tips6">
+                <a style="text-decoration: none;" href="crud.html"><div class="text">PLAN</div></a>
+                <div class="description">Plan your trip to make sure your trip going smooth and enjoy it !</div>
+    		</div>
+    	</div>
+    	<center><h2>ADVICE</h2></center>
+    	<div class="row">
+    		<div class="col tips3">
+                <a style="text-decoration: none;" href="tools.html"><div class="text">TOOLS</div></a>
+                <div class="description">Learn how to pack efficiently with all the essentials for your adventure.</div>
+    		</div>
+    		<div class="col tips4">
+                <a style="text-decoration: none;" href="health.html"><div class="text">HEALTH</div></a>
+                <div class="description">Stay healthy with tips given to assure safety while travel to unfamiliar place or far from home.</div>
+    		</div>
+    		<div class="col tips5">
+                <a style="text-decoration: none;" href="local.html"><div class="text">LOCAL</div></a>
+                <div class="description">Learn how local culture do went it comes to travel like foods transport and more...</div>
+    		</div>
+    	</div>
+    	<div class="row2">
+    		<div class="col plan">
+    			<h4>START YOUR PLAN</h4>
+    			<div><a href="crud.html" class="btn-start">Start Now</a></div>
+    		</div>
+    	</div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Travelies. All Rights Reserved.</p>
+        <p><a href="#">Legal Notice</a> | <a href="#">Terms of Use</a></p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</body>
+</html>

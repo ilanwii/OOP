@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<title>Suit the local</title>
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			color: white;
+		}
+		.background {
+			background-image: url('healths.jpg'); /* Replace with your image path */
+			background-size: cover;
+			background-position: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 80vh;
+			filter: brightness(50%);
+			z-index: -1;
+		}
+		.container {
+			width: 100%;
+			
+			margin-top: 40vh;
+			padding: 20px;
+			background-color: #333;
+			color: whitesmoke;
+			position: relative;
+			border-radius: 10px; /* Rounded corners */
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+		}
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px 20px;
+			position: fixed; /* Make header fixed */
+			top: 0; /* Lock it at the top */
+			width: 98%; /* Full width */
+			z-index: 1; /* Ensure it's above other content */
+			background-color: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent background for readability */
+			border-bottom: 2px solid white;
+		}
+
+		.header .menu {
+			display: flex;
+			gap: 5px; /* Reduce gap to bring items closer */
+			border: 1px solid white; /* Add a border around the menu */
+			border-radius: 5px; /* Optional: Rounded corners */
+			padding: 5px; /* Add padding inside the menu for spacing */
+		}
+		.header .menu a {
+			font-family: 'Times New Roman', Times, serif;
+			color: white;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 0.9em;
+			padding: 5px 10px; /* Adjust padding for links */
+			transition: background-color 0.3s; /* Smooth transition */
+		}
+
+		.header .menu a:hover {
+			background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+		}
+
+		.header .title{
+			font-family: times new roman;
+			font-size: 2em; /* Increase font size */
+			font-weight: bold; /* Keep bold */
+			color: whitesmoke; /* Gold color for better contrast */
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+			letter-spacing: 1px; /* Add space between letters */
+		}
+        .country-selector {
+			font-family: 'Times New Roman', Times, serif;
+			color: white;
+			font-size: 1.5em;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border: 2px solid white;
+			border-radius: 8px;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+		.country-selector:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+			transform: scale(1.05);
+		}
+		.country-selector i {
+			margin-right: 10px;
+		}
+        .content {
+            text-align: center;
+            margin-top: 20vh;
+            padding: 0 20px;
+        }
+        h2{
+			font-family: times new roman;
+		    font-size: 2em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: black; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h3{
+			font-family: times new roman;
+		    font-size: 1em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: white; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h4{
+			font-family: times new roman;
+		    font-size: 25px; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: black; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h5{
+			color: whitesmoke;
+			font-family: times new roman;
+			font-size: 25px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+        .content h1 {
+        	font-family: Times New Roman;
+            font-size: 3em;
+            margin: 0;
+            font-weight: bold;
+        }
+        .content h2 {
+        	font-family: Times New Roman;
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-weight: normal;
+        }
+        .footer {
+        	width: 100%;
+			background-color: black;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		.footer a {
+			color: #fff;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+		.footer a:hover {
+			text-decoration: underline;
+		}
+		.footer .social-icons {
+			margin-top: 10px;
+		}
+		.footer .social-icons a {
+			margin: 0 5px;
+			font-size: 1.5em;
+		}
+		.row {
+			display: flex;
+			flex-direction: column; /* Stack items vertically */
+			align-items: center; /* Center items */
+			margin: 20px 0; /* Add vertical spacing */
+			text-align: center;
+		}
+		.row img {
+			max-width: 50%; /* Ensure image fits within the container */
+			height: auto; /* Maintain aspect ratio */
+			border-radius: 10px; /* Rounded corners for images */
+			margin-top: 10px; /* Add spacing above image */
+		}
+		.container p {
+			font-family: Arial, sans-serif; /* Use a clean font */
+			font-size: 1.1em; /* Slightly larger font size */
+			line-height: 1.6; /* Increase line height for readability */
+			margin: 10px 0; /* Add margin for spacing */
+			padding: 0 20px; /* Add horizontal padding */
+			text-align: justify; /* Justify the text for better readability */
+		}
+
+		.row h5 {
+			font-size: 1.5em; /* Adjust font size for better visibility */
+			color: whitesmoke; /* Light color for contrast */
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+		}
+		a{
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- Background Image -->
+	<div class="background"></div>
+
+	<!-- Header -->
+	<div class="header">
+        <a href="home.html"><div class="title">TRAVELIES</div></a>
+        <div class="menu">
+			<a href="home.html">HOME</a>
+            <a href="index.html">WEATHER & OUTFIT</a>
+            <a href="tools.html">TOOLS</a>
+            <a href="local.html">LOCAL</a>
+            <a href="health.html">HEALTH</a>
+        </div>
+        <a style="text-decoration: none;" href="crud.html"><div class="country-selector">
+            <i class="fas fa-map-marked-alt"></i>
+            Create Plan
+        </div></a>
+    </div>
+    </div>
+
+    <div class="content">
+        <h1>KEEP HEALTHY WHILE TRAVELLING </h1>
+        <h3>Figure out what you should do to keep you health in good condition</h3>
+    </div>
+
+    <div class="container">
+	    <div class="row">
+	        <h5>Stay Hydrated</h5>
+	        <img src="hydrated.jpg" alt="hydrate">
+	        <p>
+	            Staying hydrated is essential for maintaining energy levels and overall health while traveling. Dehydration can lead to fatigue, headaches, and a weakened immune system, making you more susceptible to illnesses. To ensure you’re drinking enough water, carry a reusable water bottle with you and refill it at water fountains or restaurants. Setting reminders on your phone can help you stay on track, especially during busy travel days. Additionally, keep an eye out for signs of dehydration, such as dry mouth, dark urine, or dizziness, and increase your water intake in hot weather or during flights, where cabin air can be particularly drying.
+	    </div>
+	    <div class="row">
+	        <h5>Eat balance meals</h5>
+	        <img src="meals.jpg" alt="meals">
+	        <p>
+	          Eating a balanced diet while traveling is crucial for sustaining your energy and supporting your immune system. Before your trip, research healthy dining options at your destination, focusing on places that offer fresh produce and lean proteins. Packing nutritious snacks like nuts, fruits, and granola bars can help you avoid unhealthy options at airports or on the go. When dining out, aim for meals that include a variety of food groups—opt for salads, grilled meats, or whole grains, and don’t hesitate to ask for modifications, such as dressing on the side. Making conscious food choices can enhance your travel experience and help you feel your best.
+	    </div>
+	    <div class="row">
+	        <h5>Maintain an Exercise Rountine</h5>
+	        <img src="exercise.jpg" alt="exercise">
+	        <p>
+	            Incorporating physical activity into your travel plans is vital for managing stress and maintaining energy levels. Regular exercise can help offset the sedentary nature of travel, whether you're sitting on a plane or in a car. Look for opportunities to stay active, such as walking tours, hiking, or utilizing hotel gyms. Even simple activities like taking the stairs instead of the elevator or exploring a city on foot can keep you moving. Additionally, consider packing a resistance band or downloading workout apps that offer routines you can do in your hotel room. Staying active not only benefits your physical health but also enhances your overall travel experience by allowing you to explore more fully</p>
+	    </div>
+	    
+	</div>
+	</div>
+	<!-- Footer -->
+	<div class="footer">
+        <p>&copy; 2024 Travelies. All Rights Reserved.</p>
+        <p><a href="#">Legal Notice</a> | <a href="#">Terms of Use</a></p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</body>
+</html>

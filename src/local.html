@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<title>Suit the local</title>
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			color: white;
+		}
+		.background {
+			background-image: url('lovcals.jpg'); /* Replace with your image path */
+			background-size: cover;
+			background-position: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 80vh;
+			filter: brightness(50%);
+			z-index: -1;
+		}
+		.container {
+			width: 100%;
+			
+			margin-top: 40vh;
+			padding: 20px;
+			background-color: #333;
+			color: whitesmoke;
+			position: relative;
+			border-radius: 10px; /* Rounded corners */
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+		}
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px 20px;
+			position: fixed; /* Make header fixed */
+			top: 0; /* Lock it at the top */
+			width: 98%; /* Full width */
+			z-index: 1; /* Ensure it's above other content */
+			background-color: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent background for readability */
+			border-bottom: 2px solid white;
+		}
+
+		.header .menu {
+			display: flex;
+			gap: 5px; /* Reduce gap to bring items closer */
+			border: 1px solid white; /* Add a border around the menu */
+			border-radius: 5px; /* Optional: Rounded corners */
+			padding: 5px; /* Add padding inside the menu for spacing */
+		}
+		.header .menu a {
+			font-family: 'Times New Roman', Times, serif;
+			color: white;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 0.9em;
+			padding: 5px 10px; /* Adjust padding for links */
+			transition: background-color 0.3s; /* Smooth transition */
+		}
+
+		.header .menu a:hover {
+			background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+		}
+
+		.header .title{
+			font-family: times new roman;
+			font-size: 2em; /* Increase font size */
+			font-weight: bold; /* Keep bold */
+			color: whitesmoke; /* Gold color for better contrast */
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+			letter-spacing: 1px; /* Add space between letters */
+		}
+        .country-selector {
+			color: white;
+			font-size: 1.5em;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border: 2px solid white;
+			border-radius: 8px;
+			transition: background-color 0.3s, transform 0.3s;
+			font-family: 'Times New Roman', Times, serif;
+		}
+		.country-selector:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+			transform: scale(1.05);
+		}
+		.country-selector i {
+			margin-right: 10px;
+		}
+        .content {
+            text-align: center;
+            margin-top: 20vh;
+            padding: 0 20px;
+        }
+        h2{
+			font-family: times new roman;
+		    font-size: 2em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: black; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h3{
+			font-family: times new roman;
+		    font-size: 1em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: white; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h4{
+			font-family: times new roman;
+		    font-size: 25px; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: white; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h5{
+			color: #fff;
+			font-family: times new roman;
+			font-size: 25px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+        .content h1 {
+        	font-family: Times New Roman;
+            font-size: 3em;
+            margin: 0;
+            font-weight: bold;
+        }
+        .content h2 {
+        	font-family: Times New Roman;
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-weight: normal;
+        }
+        .footer {
+        	width: 100%;
+			background-color: black;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		.footer a {
+			color: #fff;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+		.footer a:hover {
+			text-decoration: underline;
+		}
+		.footer .social-icons {
+			margin-top: 10px;
+		}
+		.footer .social-icons a {
+			margin: 0 5px;
+			font-size: 1.5em;
+		}
+		.row {
+			display: flex;
+			flex-direction: column; /* Stack items vertically */
+			align-items: center; /* Center items */
+			margin: 20px 0; /* Add vertical spacing */
+			text-align: center;
+		}
+		.row img {
+			max-width: 50%; /* Ensure image fits within the container */
+			height: auto; /* Maintain aspect ratio */
+			border-radius: 10px; /* Rounded corners for images */
+			margin-top: 10px; /* Add spacing above image */
+		}
+		.container p {
+			font-family: Arial, sans-serif; /* Use a clean font */
+			font-size: 1.1em; /* Slightly larger font size */
+			line-height: 1.6; /* Increase line height for readability */
+			margin: 10px 0; /* Add margin for spacing */
+			padding: 0 20px; /* Add horizontal padding */
+			text-align: justify; /* Justify the text for better readability */
+		}
+
+		.row h5 {
+			font-size: 1.5em; /* Adjust font size for better visibility */
+			color: whitesmoke; /* Light color for contrast */
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+		}
+		a{
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- Background Image -->
+	<div class="background"></div>
+
+	<!-- Header -->
+	<div class="header">
+        <a href="home.html"><div class="title">TRAVELIES</div></a>
+        <div class="menu">
+			<a href="home.html">HOME</a>
+            <a href="index.html">WEATHER & OUTFIT</a>
+            <a href="tools.html">TOOLS</a>
+            <a href="local.html">LOCAL</a>
+            <a href="health.html">HEALTH</a>
+        </div>
+		<a style="text-decoration: none;" href="crud.html"><div class="country-selector">
+            <i class="fas fa-map-marked-alt"></i>
+            Create Plan
+        </div></a>
+    </div>
+    </div>
+
+    <div class="content">
+        <h1>WHAT TO DO ?</h1>
+        <h3>Figure out what you should do with local interaction to not bring any problem</h3>
+    </div>
+
+    <div class="container">
+	    <div class="row">
+	        <h5>Respect the local culture</h5>
+	        <img src="culture.jpg" alt="culture">
+	        <p>
+	            Embracing the local culture when traveling can transform a trip into a deeply enriching experience, allowing you to see the world through a new lens. Start by understanding and respecting local customs, as small gestures can make a big difference in how you’re received. Every place has its own etiquette, whether it’s the way people greet each other, approach dining, or show appreciation. For instance, some cultures value formal greetings, while others are more casual, so a little research or observation can help you navigate these nuances comfortably. Additionally, learning basic phrases in the local language—like “hello,” “thank you,” or “excuse me”—is a powerful way to connect with locals and show respect, even if your pronunciation isn’t perfect. Engaging in local events, such as festivals or traditional gatherings, gives you unique insight into the community’s history and values, helping you experience the destination in a more authentic way. Finally, be mindful of social cues regarding personal space and privacy, as these can vary widely. By approaching each interaction with curiosity and respect, you create positive connections, gaining a richer, more meaningful understanding of the place and its people.
+	    </div>
+	    <div class="row">
+	        <h5>Support local business at the place you travel</h5>
+	        <img src="business.jpg" alt="business">
+	        <p>
+	           Supporting local businesses while traveling adds depth to your experience and directly contributes to the local economy, making it a win-win for both travelers and communities. Dining at family-owned restaurants, shopping at neighborhood markets, or choosing locally-owned accommodations allows you to enjoy an authentic taste of the region’s culture and hospitality. Each of these choices helps sustain local livelihoods and traditions, providing a more immersive experience than chain options. As you explore, it’s equally important to be mindful of the environment: practicing “leave no trace” principles, avoiding single-use plastics, and disposing of waste responsibly. Simple acts like bringing a reusable water bottle or refusing plastic bags demonstrate respect for the community and its natural surroundings. Many locals truly appreciate travelers who show care for their landscape and community spaces, as it reflects a commitment to preserving their home for future generations. This thoughtful approach to travel creates a positive impact, fostering goodwill and promoting sustainable tourism.
+	    </div>
+	    <div class="row">
+	        <h5>Be aware about your surrounding and always in positive way.</h5>
+	        <img src="positive.jpg" alt="positive">
+	        <p>
+	            Respecting personal space and privacy is essential when traveling, particularly when capturing photos. Always ask permission before photographing individuals or private spaces, as this demonstrates cultural awareness and sensitivity to boundaries that may differ from your own. Taking the time to learn about the area’s history and customs—whether through guided tours, conversations, or local events—enriches your understanding and deepens your connection to the destination. Engaging with the community in this respectful, curious manner not only enhances your travel experience but also leaves a positive impression, showing you’re a thoughtful and considerate visitor. This approach fosters genuine connections and helps you appreciate the unique character of each place you visit.</p>
+	    </div>
+	    
+	</div>
+	</div>
+	<!-- Footer -->
+	<div class="footer">
+        <p>&copy; 2024 Travelies. All Rights Reserved.</p>
+        <p><a href="#">Legal Notice</a> | <a href="#">Terms of Use</a></p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</body>
+</html>

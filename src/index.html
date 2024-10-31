@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Weather App</title>
+    <style>
+        body{
+            background-color: #333;
+            padding: 0px;
+            margin: 0px;
+        }
+        .background {
+            background-image: url('out.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80vh;
+            filter: brightness(50%);
+            z-index: -1;
+        }
+        .container {
+            max-width: 800px;
+            margin: 450px auto 20px; /* Place the container below the background image */
+            padding: 20px;
+            background-color: grey; /* Light transparent background */
+            color: rgba(255, 255, 255, 0.832);
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .row1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        #city_input {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #yourButtonID {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #yourButtonID:hover {
+            background-color: #45a049;
+        }
+        #weatherInfo {
+            margin-top: 20px;
+            text-align: left;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.832);
+        }
+        #weatherInfo p {
+            margin: 10px 0;
+        }
+        #weatherInfo p strong {
+            color: rgba(255, 255, 255, 0.832);
+        }
+        h3 {
+            margin-top: 30px;
+            font-size: 1.4em;
+            color: #333;
+        }
+        img#icon {
+            margin-top: 10px;
+            width: 50px;
+            height: 50px;
+        }
+        .footer {
+            width: 100%;
+            background-color: black;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .social-icons {
+            margin-top: 10px;
+        }
+        .footer .social-icons a {
+            margin: 0 5px;
+            font-size: 1.5em;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed; /* Make header fixed */
+            top: 0; /* Lock it at the top */
+            width: 98%; /* Full width */
+            z-index: 1; /* Ensure it's above other content */
+            background-color: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent background for readability */
+            border-bottom: 2px solid white;
+        }
+
+        .header .menu {
+            display: flex;
+            gap: 5px; /* Reduce gap to bring items closer */
+            border: 1px solid white; /* Add a border around the menu */
+            border-radius: 5px; /* Optional: Rounded corners */
+            padding: 5px; /* Add padding inside the menu for spacing */
+        }
+        .header .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 5px 10px; /* Adjust padding for links */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .header .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+        }
+
+        .header .title{
+            font-family: times new roman;
+            font-size: 2em; /* Increase font size */
+            font-weight: bold; /* Keep bold */
+            color: whitesmoke; /* Gold color for better contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+            letter-spacing: 1px; /* Add space between letters */
+        }
+        .country-selector {
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border: 2px solid white;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .country-selector:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        .country-selector i {
+            margin-right: 10px;
+        }
+        .content {
+            text-align: center;
+            margin-top: 20vh;
+            padding: 0 20px;
+        }
+        a{
+            text-decoration: none;
+        }
+        .content h1 {
+            color: rgba(255, 255, 255, 0.832);
+            font-family: Times New Roman;
+            font-size: 3em;
+            margin: 0;
+            font-weight: bold;
+        }
+        h3{
+            font-family: times new roman;
+            font-size: 1em; /* Increase font size */
+            font-weight: bold; /* Keep bold */
+            color: white; /* Gold color for better contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+            letter-spacing: 1px; /* Add space between letters */
+        }
+        .row {
+			display: flex;
+			flex-direction: column; /* Stack items vertically */
+			align-items: center; /* Center items */
+			margin: 10px 0; /* Add vertical spacing */
+			text-align: center;
+		}
+		.row img {
+			max-width: 50%; /* Ensure image fits within the container */
+			height: auto; /* Maintain aspect ratio */
+			border-radius: 10px; /* Rounded corners for images */
+			margin-top: 10px; /* Add spacing above image */
+		}
+		.container1 p {
+			font-family: Arial, sans-serif; /* Use a clean font */
+			font-size: 1.1em; /* Slightly larger font size */
+			line-height: 1.6; /* Increase line height for readability */
+			margin: 10px 0; /* Add margin for spacing */
+			padding: 0 20px; /* Add horizontal padding */
+			text-align: justify; /* Justify the text for better readability */
+		}
+        .container1{
+			width: 80%;
+			max-width: 1500px;
+			margin: 20vh auto 20px;
+			padding: 20px;
+			background-color: grey;
+			color: rgba(255, 255, 255, 0.832);
+			position: relative;
+			border-radius: 10px; /* Rounded corners */
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+		}
+
+		.row h5 {
+			font-size: 1.5em; /* Adjust font size for better visibility */
+			color: rgba(255, 255, 255, 0.832); /* Light color for contrast */
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+		}
+        h1{
+            font-family: 'Times New Roman', Times, serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+            letter-spacing: 1px; /* Add space between letters */
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="background"></div>
+
+    <!-- Header -->
+    <div class="header">
+        <a href="home.html"><div class="title">TRAVELIES</div></a>
+        <div class="menu">
+            <a href="home.html">HOME</a>
+            <a href="index.html">WEATHER & OUTFIT</a>
+            <a href="tools.html">TOOLS</a>
+            <a href="local.html">LOCAL</a>
+            <a href="health.html">HEALTH</a>
+        </div>
+        <a style="text-decoration: none;" href="crud.html"><div class="country-selector">
+            <i class="fas fa-map-marked-alt"></i>
+            Create Plan
+        </div></a>
+    </div>
+    </div>
+
+    <div class="content">
+        <h1>WHAT TO WEAR ACCORDING TO WEATHER ?</h1>
+        <h3>Figure out what you should wear according to temperature of country you check.</h3>
+    </div>
+
+    <div class="container">
+        <h1>Search Country or Place you planning to go</h1>
+        <p>Figure out the weather of the country you're visiting to able preapre what you should wear.</p>
+
+        <div class="row1">
+            <input type="text" id="city_input" placeholder="Enter city" />
+            <button id="yourButtonID">Get Weather</button>
+        </div>
+
+        <div id="weatherInfo">
+            <p><strong>Location:</strong> <span id="location">---</span></p>
+            <p><strong>Region:</strong> <span id="region">---</span></p>
+            <p><strong>Country:</strong> <span id="country">---</span></p>
+            <p><strong>Local Time:</strong> <span id="localtime">---</span></p>
+            <p><strong>Temperature:</strong> <span id="temperature">---</span> °C</p>
+            <p><strong>Feels Like:</strong> <span id="feelstemperature">---</span> °C</p>
+            <p><strong>Sunrise:</strong> <span id="sunrise">---</span></p>
+            <p><strong>Sunset:</strong> <span id="sunset">---</span></p>
+            <p><strong>Weather Icon:</strong> <img id="icon" src="" alt="Weather icon" /></p>
+            <p><strong>Weather Description:</strong> <span id="description">---</span></p>
+
+            <h3>3-day Forecast Temperature</h3>
+            <div id="forecast">
+                <div>
+                    <h3>Day 1</h3>
+                    <p>Max Temperature: <span id="day1_max"></span></p>
+                    <p>Wind Speed: <span id="day1_wind"></span></p>
+                    <p>Humidity: <span id="day1_humidity"></span></p>
+                    <p>Description: <span id="day1_description"></span></p>
+                </div>
+                <div>
+                    <h3>Day 2</h3>
+                    <p>Max Temperature: <span id="day2_max"></span></p>
+                    <p>Wind Speed: <span id="day2_wind"></span></p>
+                    <p>Humidity: <span id="day2_humidity"></span></p>
+                    <p>Description: <span id="day2_description"></span></p>
+                </div>
+                <div>
+                    <h3>Day 3</h3>
+                    <p>Max Temperature: <span id="day3_max"></span></p>
+                    <p>Wind Speed: <span id="day3_wind"></span></p>
+                    <p>Humidity: <span id="day3_humidity"></span></p>
+                    <p>Description: <span id="day3_description"></span></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container1">
+        <div id="summerOutfitTips" style="display: none;" class="row">
+            <h5>What to Wear When weather of the country Hot type of weather (30°C and above or Higher in Some Countries)</h5>
+            <img src="summer.jpg" alt="Summer Outfit">
+            <p>
+                Often known as Summer.<strong>Summer</strong> is characterized by warm to hot weather, with temperatures often ranging from mild to over 30°C (86°F), depending on the region. This season brings longer daylight hours and abundant sunshine, creating ideal conditions for outdoor activities such as hiking, swimming, camping, and picnics. The landscape bursts with life, as vegetation reaches its peak; trees are lush and green, and flowers bloom vibrantly, attracting bees, butterflies, and other pollinators. Wildlife is also more active, with birds singing and insects buzzing, contributing to a lively atmosphere. Additionally, summer is a time for festivals, fairs, and concerts, where communities come together to celebrate music, food, and culture, making it a vibrant and enjoyable season for many.
+            <p>For summer outfits, prioritize lightweight and breathable fabrics to stay comfortable in the heat. Choose tops made of cotton, linen, or moisture-wicking materials, such as tank tops, short-sleeve shirts, or loose-fitting blouses. Pair these with comfortable shorts or skirts, opting for denim shorts, flowy maxi skirts, or breathable cotton shorts that allow for easy movement. Sundresses are also a fantastic choice, as they provide style and comfort in one piece; look for lightweight, flowy designs that keep you cool. When it comes to footwear, sandals, flip-flops, or breathable sneakers are ideal, especially if you plan to do a lot of walking. Don’t forget to bring layering options for cooler evenings, such as a light cardigan, denim jacket, or kimono-style cover-up. Finally, accessorize your summer look with sunglasses, wide-brimmed hats, and lightweight scarves to protect against the sun while adding a touch of style. This combination will help you enjoy the season in comfort and style!</p>
+        </div>
+        <div id="autumnOutfitTips" style="display: none;" class="row">
+            <h5>What to Wear When Fall type of weather Hits (10°C to 20°C or Higher in Some Countries)</h5>
+	        <img src="autumn.jpg" alt="autumn Outfit">
+	        <p>
+	            <strong>Fall</strong>, or known as autumn, is a captivating season marked by a gradual transition from the warmth of summer to the chill of winter. As days shorten and temperatures cool, the landscape transforms into a stunning tapestry of vibrant reds, oranges, and yellows as trees shed their leaves, creating a crunchy carpet underfoot. This time of year is associated with cozy clothing like sweaters and light jackets, while the harvest brings an abundance of fruits and vegetables, such as apples and pumpkins, celebrated in seasonal festivals. Culturally, autumn is linked to holidays like Halloween and Thanksgiving, fostering community gatherings and a sense of nostalgia. With its rich colors, delicious flavors, and festive spirit, autumn invites appreciation for nature’s beauty and the warmth of togetherness.
+
+	        <p>For autumn outfits, layering is key to adapting to the fluctuating temperatures of the season. Start with a lightweight base layer, such as a long-sleeve shirt or a cozy sweater, made from breathable fabrics like cotton or merino wool. Pair this with medium-weight bottoms like jeans, chinos, or corduroy pants that offer comfort and warmth. Adding a stylish cardigan, denim jacket, or a tailored coat can provide extra insulation for cooler days.Boots, such as ankle boots or knee-high styles, are perfect for the season, combining fashion with functionality as they offer warmth and protection against wet weather. Accessories like scarves, beanies, and gloves not only add warmth but also enhance your outfit with seasonal colors and textures. Opt for earthy tones like burnt orange, deep reds, and rich browns to reflect the autumn palette. Finally, don’t forget to choose a bag that complements your outfit while being practical for carrying essentials, making your autumn look both stylish and functional.</p>
+	    </div>
+        
+        <!-- Winter Tips -->
+        <div id="winterOutfitTips" style="display: none;" class="row">
+            <h5>What to Wear When Cold type of weather Hits (0°C to 10°C or Lower in Some Countries)</h5>
+	        <img src="winter1.jpg" alt="winter Outfit">
+	        <img src="winter2.jpg" alt="winter Outfit">
+	        <p>
+	            <strong>Winter</strong> or known as cold weather season is a season characterized by cold temperatures, shorter days, and often, a beautiful blanket of snow that transforms the landscape into a serene wonderland. As the air turns crisp, nature takes on a stillness, with trees standing bare against the sky and many animals entering hibernation. The season brings a unique charm, as snowflakes dance through the air, creating picturesque scenes perfect for outdoor activities like skiing, snowboarding, and ice skating.Despite the chill, winter is a time for cozy indoor gatherings, where families and friends come together to share warm meals, hot beverages, and the joy of the holidays. Festivities such as Christmas, Hanukkah, and New Year’s celebrations bring a sense of warmth and community, with twinkling lights and decorations brightening the long nights. Winter also invites the enjoyment of seasonal activities, from building snowmen to sipping hot cocoa by the fireplace. The season, with its stark beauty and opportunities for both adventure and relaxation, embodies a time for reflection, comfort, and connection, making it a beloved part of the annual cycle.
+
+	        <p>For winter outfits, layering is essential to stay warm while maintaining style. Start with a thermal or long-sleeve base layer made from moisture-wicking materials to keep you dry and comfortable. Add a cozy sweater or fleece for insulation, and top it off with a warm, waterproof coat or parka to protect against wind and snow.When it comes to bottoms, opt for insulated trousers, wool or thermal leggings, or even lined jeans to keep your legs warm. For footwear, choose insulated and waterproof boots with good traction to handle slippery surfaces. Thick, warm socks can add an extra layer of comfort.Accessories are crucial in winter; don't forget to wear a hat to retain body heat, a scarf to protect your neck, and gloves or mittens to keep your hands warm. Consider choosing accessories in vibrant colors or patterns to brighten up the typically gray winter landscape. Lastly, if you're in a particularly cold climate, layering with a stylish yet functional outer layer, like a puffer jacket or a wool coat, will help ensure you stay warm without sacrificing style</p>
+	    </div>
+        
+        <!-- Spring Tips -->
+        <div id="springOutfitTips" style="display: none;" class="row">
+            <h5>What to Wear When Warm type of weather Hits (20°C to 30°C or Higher in Some Countries)</h5>
+	        <img src="spring.jpg" alt="spring Outfit">
+	        <p>
+	            <strong>Spring</strong> or known as warm weather season is a vibrant season of renewal and rejuvenation, marking the end of winter's chill and the awakening of nature. As temperatures rise, trees regain their leaves and colorful blossoms fill gardens and parks, creating a picturesque landscape that invites outdoor exploration. The longer days bring more sunlight, encouraging activities like picnics, hiking, and gardening, while the air is filled with the sweet scents of blooming flowers and fresh greenery. Spring also heralds the return of migratory birds and the emergence of animals from hibernation, adding to the lively atmosphere. Although the weather can be unpredictable, with sunny days often followed by rain showers, this transition fosters a sense of optimism and energy. Celebrated with various festivals and holidays, spring symbolizes new beginnings and the beauty of nature's revival, making it a cherished time that inspires appreciation for the world around us.
+
+	        <p>For spring outfits, its similar to autumn season because layering is essential to accommodate the fluctuating temperatures of the season. Start with a light base layer, such as a breathable cotton or linen shirt, which can be paired with a lightweight cardigan or denim jacket for added warmth during cooler mornings and evenings. Opt for stylish yet comfortable bottoms like cropped jeans, chinos, or flowy skirts that allow for movement and breathability.Spring is a great time to embrace color and patterns; consider incorporating floral prints, pastel shades, or bright colors to reflect the season's vibrancy. Footwear options can include ankle boots, stylish sneakers, or loafers, which provide comfort and versatility for various activities. Accessories like lightweight scarves, sun hats, and sunglasses not only enhance your outfit but also offer protection against changing weather and sun exposure. Finally, don’t forget to carry a lightweight, waterproof jacket or a compact umbrella, as spring weather can be unpredictable, ensuring you're prepared for any sudden rain showers while looking stylish.</p>
+	    </div>
+    </div>
+    
+    <script src="preload.js"></script>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Travelies. All Rights Reserved.</p>
+        <p><a href="#">Legal Notice</a> | <a href="#">Terms of Use</a></p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</body>
+</html>

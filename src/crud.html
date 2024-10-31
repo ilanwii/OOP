@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>CRUD Travel Planner</title>
+    <link rel="stylesheet" href="photon.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #333;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .background {
+            background-image: url('plans.jpg');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70vh;
+            filter: brightness(50%);
+            z-index: -1;
+        }
+
+        .footer {
+        	width: 100%;
+			background-color: black;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		.footer a {
+			color: #fff;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+		.footer a:hover {
+			text-decoration: underline;
+		}
+		.footer .social-icons {
+			margin-top: 10px;
+		}
+		.footer .social-icons a {
+			margin: 0 5px;
+			font-size: 1.5em;
+		}
+
+    .header {
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    padding: 10px 20px;
+		    position: fixed; /* Make header fixed */
+		    top: 0; /* Lock it at the top */
+		    width: 100%; /* Full width */
+		    z-index: 1; /* Ensure it's above other content */
+		    background-color: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent background for readability */
+		    border-bottom: 2px solid white;
+		}
+
+		.header .menu {
+		    display: flex;
+		    gap: 5px; /* Reduce gap to bring items closer */
+		    border: 1px solid white; /* Add a border around the menu */
+		    border-radius: 5px; /* Optional: Rounded corners */
+		    padding: 5px; /* Add padding inside the menu for spacing */
+		}
+
+    .header .menu a {
+			font-family: 'Times New Roman', Times, serif;
+		    color: white;
+		    text-decoration: none;
+		    font-weight: bold;
+		    font-size: 0.9em;
+		    padding: 5px 10px; /* Adjust padding for links */
+		    transition: background-color 0.3s; /* Smooth transition */
+		}
+
+		.header .menu a:hover {
+		    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+		}
+
+		.header .title{
+			font-family: times new roman;
+		    font-size: 2em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: whitesmoke; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+        .country-selector {
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border: 2px solid white;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .country-selector:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        .country-selector i {
+            margin-right: 10px;
+        }
+        .content {
+            text-align: center;
+            margin-top: 20vh;
+            padding: 0 20px;
+        }
+        .content h1 {
+          color: whitesmoke;
+        	font-family: Times New Roman;
+            font-size: 3em;
+            margin: 0;
+            font-weight: bold;
+        }
+        .content h2 {
+        	font-family: Times New Roman;
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-weight: normal;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 350px auto 20px;
+            padding: 20px;
+            background-color: grey;
+            color: rgba(255, 255, 255, 0.832);
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .planner-title {
+            font-size: 1.8em;
+            color: #f5f5f5;
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .form {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            color: #dcdcdc;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            background-color: #444;
+            color: #f5f5f5;
+            border: 1px solid #666;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-group .btn {
+            background-color: #666;
+            color: #f5f5f5;
+            border-radius: 5px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex-grow: 1;
+            margin: 5px;
+        }
+
+        .button-group .btn:hover {
+            background-color: #555;
+        }
+      a{
+        text-decoration: none;
+      }
+      h3{
+            font-family: times new roman;
+            font-size: 1em; /* Increase font size */
+            font-weight: bold; /* Keep bold */
+            color: white; /* Gold color for better contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+            letter-spacing: 1px; /* Add space between letters */
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="header">
+        <a href="home.html">
+            <div class="title">TRAVELIES</div>
+        </a>
+        <div class="menu">
+            <a href="home.html">HOME</a>
+            <a href="index.html">WEATHER & OUTFIT</a>
+            <a href="tools.html">TOOLS</a>
+            <a href="local.html">LOCAL</a>
+            <a href="health.html">HEALTH</a>
+        </div>
+        <a style="text-decoration: none;" href="crud.html"><div class="country-selector">
+            <i class="fas fa-map-marked-alt"></i>
+            Create Plan
+        </div></a>
+    </div>
+    </div>
+
+    <div class="content">
+        <h1>PLAN YOU TRIP</h1>
+        <h3>Plan your trip to make sure you prepare to travelling</h3>
+    </div>
+
+    <div class="container">
+        <h1 class="planner-title">Travel Planner</h1>
+        
+        <form class="form">
+            <div class="form-group">
+                <label>Plan Name</label>
+                <input id="fileName" type="text" class="form-control" placeholder="Enter plan name" />
+            </div>
+            
+            <div class="form-group">
+                <label>Destination</label>
+                <input id="destination" type="text" class="form-control" placeholder="Enter destination" />
+            </div>
+
+            <div class="form-group">
+                <label>Date</label>
+                <input id="travelDate" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Content</label>
+                <textarea id="fileContents" class="form-control" rows="5" placeholder="Enter your travel plan"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Additional Notes</label>
+                <textarea id="notes" class="form-control" rows="3" placeholder="Enter any additional notes"></textarea>
+            </div>
+
+            <!-- Weather Selection -->
+            <div class="form-group">
+                <label for="weather">Weather:</label>
+                <select id="weather" class="form-control">
+                    <option value="">Select weather</option>
+                    <option value="hot">Hot</option>
+                    <option value="warm">Warm</option>
+                    <option value="fall">Fall</option>
+                    <option value="cold">Cold</option>
+                </select>
+            </div>
+
+            <!-- Activities Field -->
+            <div class="form-group">
+                <label for="activities">Activities:</label>
+                <textarea id="activities" class="form-control" rows="3" placeholder="Activities based on selected weather"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button id="btnCreate" class="btn">Create</button>
+                <button id="btnRead" class="btn">Read</button>
+                <button id="btnUpdate" class="btn">Update</button>
+                <button id="btnDelete" class="btn">Delete</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Travelies. All Rights Reserved.</p>
+        <p><a href="#">Legal Notice</a> | <a href="#">Terms of Use</a></p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <script src="crud.js"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<title>Tools to Bring</title>
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			color: white;
+		}
+		.background {
+			background-image: url('tools.jpg'); /* Replace with your image path */
+			background-size: cover;
+			background-position: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 80vh;
+			filter: brightness(50%);
+			z-index: -1;
+		}
+		.container {
+			width: 100%;
+			
+			margin-top: 40vh;
+			padding: 20px;
+			background-color: #333;
+			color: white;
+			position: relative;
+			border-radius: 10px; /* Rounded corners */
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+		}
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px 20px;
+			position: fixed; /* Make header fixed */
+			top: 0; /* Lock it at the top */
+			width: 98%; /* Full width */
+			z-index: 1; /* Ensure it's above other content */
+			background-color: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent background for readability */
+			border-bottom: 2px solid white;
+		}
+
+		.header .menu {
+			display: flex;
+			gap: 5px; /* Reduce gap to bring items closer */
+			border: 1px solid white; /* Add a border around the menu */
+			border-radius: 5px; /* Optional: Rounded corners */
+			padding: 5px; /* Add padding inside the menu for spacing */
+		}
+		.header .menu a {
+			font-family: 'Times New Roman', Times, serif;
+			color: white;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 0.9em;
+			padding: 5px 10px; /* Adjust padding for links */
+			transition: background-color 0.3s; /* Smooth transition */
+		}
+
+		.header .menu a:hover {
+			background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+		}
+
+		.header .title{
+			font-family: times new roman;
+			font-size: 2em; /* Increase font size */
+			font-weight: bold; /* Keep bold */
+			color: whitesmoke; /* Gold color for better contrast */
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+			letter-spacing: 1px; /* Add space between letters */
+		}
+        .country-selector {
+			font-family: 'Times New Roman', Times, serif;
+			color: white;
+			font-size: 1.5em;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border: 2px solid white;
+			border-radius: 8px;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+		.country-selector:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+			transform: scale(1.05);
+		}
+		.country-selector i {
+			margin-right: 10px;
+		}
+        .content {
+            text-align: center;
+            margin-top: 20vh;
+            padding: 0 20px;
+        }
+        h2{
+			font-family: times new roman;
+		    font-size: 2em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: black; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h3{
+			font-family: times new roman;
+		    font-size: 1em; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: white; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h4{
+			font-family: times new roman;
+		    font-size: 25px; /* Increase font size */
+		    font-weight: bold; /* Keep bold */
+		    color: black; /* Gold color for better contrast */
+		    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+		h5{
+			font-family: times new roman;
+			font-size: 25px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow effect */
+		    letter-spacing: 1px; /* Add space between letters */
+		}
+        .content h1 {
+        	font-family: Times New Roman;
+            font-size: 3em;
+            margin: 0;
+            font-weight: bold;
+        }
+        .content h2 {
+        	font-family: Times New Roman;
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-weight: normal;
+        }
+        .footer {
+        	width: 100%;
+			background-color: black;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		.footer a {
+			color: #fff;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+		.footer a:hover {
+			text-decoration: underline;
+		}
+		.footer .social-icons {
+			margin-top: 10px;
+		}
+		.footer .social-icons a {
+			margin: 0 5px;
+			font-size: 1.5em;
+		}
+		.row {
+			display: flex;
+			flex-direction: column; /* Stack items vertically */
+			align-items: center; /* Center items */
+			margin: 20px 0; /* Add vertical spacing */
+			text-align: center;
+		}
+		.row img {
+			max-width: 50%; /* Ensure image fits within the container */
+			height: auto; /* Maintain aspect ratio */
+			border-radius: 10px; /* Rounded corners for images */
+			margin-top: 10px; /* Add spacing above image */
+		}
+		.container p {
+			font-family: Arial, sans-serif; /* Use a clean font */
+			font-size: 1.1em; /* Slightly larger font size */
+			line-height: 1.6; /* Increase line height for readability */
+			margin: 10px 0; /* Add margin for spacing */
+			padding: 0 20px; /* Add horizontal padding */
+			text-align: justify; /* Justify the text for better readability */
+		}
+
+		.row h5 {
+			font-family: 'Times New Roman', Times, serif;
+			font-size: 1.5em; /* Adjust font size for better visibility */
+			color: whitesmoke; /* Light color for contrast */
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+		}
+		a{
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- Background Image -->
+	<div class="background"></div>
+
+	<!-- Header -->
+	<div class="header">
+        <a href="home.html"><div class="title">TRAVELIES</div></a>
+        <div class="menu">
+			<a href="home.html">HOME</a>
+            <a href="index.html">WEATHER & OUTFIT</a>
+            <a href="tools.html">TOOLS</a>
+            <a href="local.html">LOCAL</a>
+            <a href="health.html">HEALTH</a>
+        </div>
+        <a style="text-decoration: none;" href="crud.html"><div class="country-selector">
+            <i class="fas fa-map-marked-alt"></i>
+            Create Plan
+        </div></a>
+    </div>
+    </div>
+
+    <div class="content">
+        <h1>WHAT TO BRING ?</h1>
+        <h3>Figure out what you should bring according how long you stay</h3>
+    </div>
+
+    <div class="container">
+	    <div class="row">
+	        <h5>Important things you should recheck when done packing</h5>
+	        <img src="important.jpg" alt="important">
+	        <p>
+	            After completing your packing, it’s essential to do a final check to ensure you haven’t missed anything important. First, double-check your travel documents, including your passport, ID, boarding passes, tickets, and any visas or travel permits required for your destination; keeping these in an easily accessible spot is key. Confirm you have any necessary medications, along with a small first-aid kit for emergencies. Review your personal essentials like chargers for all devices, headphones, and any adapters you might need for different power outlets. Make sure your toiletries are packed in a leak-proof bag, and if you’re flying, verify that any liquids follow airline restrictions. Reassess your clothing choices, ensuring you have suitable attire for the climate and activities planned, along with comfortable shoes. It’s also wise to double-check valuables, such as wallets, credit cards, and cash, ideally keeping them in a secure, easy-to-reach location. Finally, verify that you have a small bag or tote for daily use at your destination, so you’re prepared for any last-minute needs on the go. This final recheck will help you travel with peace of mind, knowing you’re fully prepared.
+	    </div>
+	    <div class="row">
+	        <h5>What to Bring for 1-2 days Travel</h5>
+	        <img src="short.jpg" alt="Short time">
+	        <p>
+	            For a 1-2 day trip, you’ll want to pack efficiently to keep things light while ensuring you have everything you need. Start with a versatile outfit for each day, like comfortable jeans, pants, or shorts paired with simple tops. If the weather is cooler, include a lightweight jacket or sweater that can work with both outfits. For shoes, choose a pair that’s comfortable enough for walking but appropriate for any evening plans.</p>
+
+				<p>In terms of toiletries, pack travel-sized essentials such as toothpaste, toothbrush, deodorant, and any skincare items you use daily. A small bag for toiletries keeps everything organized and easy to access. Don’t forget travel-sized chargers for your phone and other devices, along with any necessary adapters if you’re heading somewhere with different outlets. A small first-aid kit with essentials like band-aids and pain relievers can also be helpful.</p>
+
+				<p>If you’ll need them, bring a book or e-reader for entertainment, and keep important documents like ID, tickets, or confirmations in an easily accessible part of your bag. Finally, add a reusable water bottle, and if there’s a chance of rain, a compact umbrella or rain jacket. By packing only the essentials, you’ll be able to travel lightly and focus on enjoying the experience.</p>
+	    </div>
+	    <div class="row">
+	        <h5>What to Bring for 3-4 days Travel</h5>
+	        <img src="medium.jpg" alt="Medium Tools">
+	        <p>
+	            For a 3-4 day trip, aim to pack versatile, coordinated clothing to keep your luggage manageable while covering all essentials. Start by choosing three main outfits that can be mixed and matched: think comfortable pants, jeans, or versatile skirts paired with a mix of casual tops, such as T-shirts, blouses, or button-downs. Consider including a dress or a slightly dressier option if you anticipate evening outings. A light jacket, sweater, or cardigan is essential for layering, especially if temperatures vary, and can be worn over multiple outfits. For shoes, bring a comfortable pair for walking and, if needed, a second pair like loafers or flats to transition from day to night.</p>
+
+				<p>In your toiletry bag, pack travel-sized essentials like toothpaste, a toothbrush, deodorant, and any regular skincare and haircare products. If you use makeup, only bring your must-haves, such as foundation, mascara, and one lip product, to keep things simple. A compact first-aid kit with basics like pain relievers, band-aids, and any personal medication is also helpful. Remember to pack items like contact lenses or solutions if needed, and keep everything in a leak-proof bag.Electronics can add bulk, so streamline to essentials. Pack chargers for your phone, tablet, or e-reader, along with headphones, and if you’re traveling internationally, an adapter for power outlets. It’s also helpful to bring a compact power bank in case you’re out for long periods and need extra battery life. To keep entertained during downtime, bring a book or an e-reader loaded with reading material, or a small notebook if you like to journal or jot down trip notes.</p>
+
+				<p>For documents, keep your passport, ID, tickets, and itinerary in a secure but accessible spot, like a travel wallet or a designated pocket in your bag. Lastly, pack a few convenient items like a compact umbrella for unexpected rain, a reusable water bottle, and a small tote bag or daypack for carrying essentials while you explore. A crossbody bag for everyday use will let you carry valuables securely and conveniently, making it easy to keep all essentials within reach. With these thoughtful choices, you’ll be set for a smooth and enjoyable trip without overpacking.</p>
+	    </div>
+	    <div class="row">
+	        <h5>What to Bring for 4-5 days Trip</h5>
+	        <img src="big.jpg" alt="Big">
+	        <p>
+	            For a 4-5 day trip, focus on packing versatile essentials and layering options to create a range of outfits without overstuffing your bag. Start by packing four main outfits with interchangeable pieces. Choose two pairs of bottoms, like jeans or comfortable pants, and mix in tops that can be dressed up or down, such as T-shirts, blouses, or lightweight sweaters. Adding a dress or a slightly more formal top can be great for an evening out. Bring a warm layer, like a cardigan or light sweater, and consider a weatherproof jacket or coat if you’ll be in a colder or rainy area. Footwear should include one comfortable pair for walking and one additional pair for variety, such as loafers, sandals, or low heels, depending on the climate.</p>
+
+				<p>In your toiletry bag, pack travel-sized essentials, including toothpaste, a toothbrush, deodorant, shampoo, conditioner, and any skincare products you regularly use. Bring minimal makeup, sticking to basics like foundation, mascara, and one multipurpose lip product. If you’re particular about haircare, a compact styling tool like a mini flat iron might come in handy. Be sure to pack any medications, contact lenses, or personal items in a leak-proof bag to avoid spills.</p>
+
+				<p>When it comes to electronics, keep it simple. Bring only essential chargers, a power bank for on-the-go charging, and headphones. If you’re traveling internationally, pack a power adapter. To stay entertained, bring a book, an e-reader, or download content on a tablet. A small notebook can be great for jotting down memories or travel notes.</p>
+	    </div>
+	    <div class="row">
+	        <h5>What to Bring for one-two weeks Trip</h5>
+	        <img src="large.jpg" alt="Large">
+	        <p>
+	            For a trip lasting one to two weeks, focus on packing versatile, high-quality essentials that can be mixed and matched to create multiple outfits. Start with 5-6 tops and 3-4 bottoms that you can layer and combine in various ways. For tops, bring a mix of casual T-shirts, blouses, or button-downs and one or two dressier options for dinners or special outings. Choose comfortable, versatile bottoms, such as jeans, chinos, or skirts, and if the weather varies, consider a pair of shorts or lightweight pants. A dress or jumpsuit can also be useful for versatility, as it can be dressed up or down. Include two layering options, like a light sweater and a weather-appropriate jacket or coat, to adjust for cooler or unpredictable weather.</p>
+
+				<p>For shoes, select two to three pairs that cover all activities, like comfortable walking shoes or sneakers, a pair of dressier shoes for evenings out, and possibly sandals or loafers if the weather is warm. Stick to neutral colors so they coordinate easily with all your outfits. Packing cubes or compression bags can help keep everything organized and create extra space in your luggage.</p>
+
+				<p>In your toiletry bag, bring travel-sized basics, including toothpaste, toothbrush, deodorant, shampoo, conditioner, and any essential skincare items. Add in a few personal care items, like a razor and makeup essentials, sticking to minimal products that cover the basics (e.g., foundation, mascara, and one multipurpose lip color). If needed, pack a compact hair styling tool and any specific items, like medications or contact lenses. For longer trips, consider bringing laundry detergent sheets or packets, allowing you to wash a few items and re-wear them.</p>
+
+				<p>For electronics, pack essentials only: chargers for all devices, headphones, and a power bank to stay connected on the go. If you’re traveling internationally, bring an outlet adapter. To stay entertained during travel, download e-books or movies on a tablet, or bring a book for a screen break. A small notebook can be a nice addition for journaling or jotting down notes about your trip.</p>
+	    </div>
+	</div>
+	</div>
+
+
+	<!-- Footer -->
+	<div class="footer">
+        <p>&copy; 2024 Travelies. All Rights Reserved.</p>
+        <p><a href="#">Legal Notice</a> | <a href="#">Terms of Use</a></p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</body>
+</html>
